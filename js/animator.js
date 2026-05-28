@@ -1,4 +1,4 @@
-﻿/**
+/**
  * animator.js - Canvas Sketchbook Controller.
  * Handles frame overlays, multi-layered canvas drawing, and onion-skin layers.
  */
@@ -24,6 +24,20 @@ const animatorEngine = {
   brushWidth: 4,
   lastX: 0,
   lastY: 0,
+
+  /**
+   * Updates current drawing color coordinates.
+   */
+  setBrushColor(color) {
+    this.brushColor = color;
+  },
+
+  /**
+   * Updates drawing brush stroke widths.
+   */
+  setBrushWidth(width) {
+    this.brushWidth = parseInt(width, 10) || 4;
+  },
 
   /**
    * Initializes the animator elements and drawing loops.
@@ -197,6 +211,21 @@ const animatorEngine = {
     if (clearBtn) {
       clearBtn.addEventListener('click', () => {
         this.clearCanvas(true);
+      });
+    }
+
+    // Dynamic brush customizer selectors
+    const colorSelector = document.getElementById('anim-brush-color');
+    if (colorSelector) {
+      colorSelector.addEventListener('input', (e) => {
+        this.setBrushColor(e.target.value);
+      });
+    }
+
+    const widthSelector = document.getElementById('anim-brush-width');
+    if (widthSelector) {
+      widthSelector.addEventListener('input', (e) => {
+        this.setBrushWidth(e.target.value);
       });
     }
   },
