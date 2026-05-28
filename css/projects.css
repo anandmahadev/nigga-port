@@ -1,0 +1,438 @@
+/* ==========================================
+   CHAPTER 3: MISSIONS (PROJECTS) STYLING
+   ========================================== */
+
+/* 2-Column Responsive Grid */
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+  align-items: start;
+}
+
+/* Staggered Rhythm on large screens */
+@media (min-width: 992px) {
+  .mission-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mission-grid > *:nth-child(even) {
+    margin-top: 50px; /* Staggers the even-numbered cards downward */
+  }
+}
+
+/* 3D-Parallax Project Cards */
+.mission-card {
+  position: relative;
+  background: rgba(3, 3, 3, 0.85);
+  border: 1px solid rgba(0, 245, 255, 0.1);
+  border-radius: 8px;
+  padding: 30px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+  transform-style: preserve-3d;
+  transform: perspective(800px) rotateX(0deg) rotateY(0deg);
+  transition: border-color 0.4s var(--ease-cinematic), box-shadow 0.4s var(--ease-cinematic);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Accent lines and gradients */
+.card-glow-element {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 245, 255, 0.08) 0%, rgba(0, 0, 0, 0) 60%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-cinematic);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-border-line {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  opacity: 0.2;
+  transition: opacity 0.4s var(--ease-cinematic);
+  z-index: 2;
+}
+
+/* Hover intensities */
+.mission-card:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 20px 45px rgba(0, 245, 255, 0.08), inset 0 0 15px rgba(0, 245, 255, 0.03);
+}
+
+.mission-card:hover .card-glow-element {
+  opacity: 1;
+}
+
+.mission-card:hover .card-border-line {
+  opacity: 1;
+}
+
+/* Header detailing */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  transform: translateZ(20px);
+}
+
+.mission-number {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 2px;
+}
+
+.mission-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--cyan);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  background: rgba(0, 245, 255, 0.02);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.pulse-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan);
+  animation: miniPulse 1.8s infinite;
+}
+
+@keyframes miniPulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Body content */
+.card-body {
+  margin-bottom: 30px;
+  transform: translateZ(30px);
+}
+
+.codename {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 12px;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+}
+
+.mission-brief {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--gray-text);
+  margin-bottom: 20px;
+  /* Max 2 line brief */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tech tag capsules */
+.project-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.project-tech-tags .tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px 10px;
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s var(--ease-cinematic);
+}
+
+.mission-card:hover .tag {
+  border-color: rgba(0, 245, 255, 0.15);
+  color: var(--cyan);
+}
+
+/* Staggered action buttons */
+.card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  z-index: 5;
+  transform: translateZ(15px);
+}
+
+.btn-intel, .btn-launch-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  transition: all 0.3s var(--ease-cinematic);
+}
+
+.btn-intel {
+  color: var(--gray-text);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-intel:hover {
+  color: var(--white);
+  border-color: var(--white);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.btn-launch-card {
+  color: var(--cyan);
+  background: rgba(0, 245, 255, 0.02);
+  border: 1px solid var(--cyan-dim);
+}
+
+.btn-launch-card:hover {
+  color: var(--white);
+  background: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan-dim);
+  text-shadow: 0 0 5px var(--white);
+}
+
+/* ==========================================
+   CHAPTER 4: AI LAB STYLING (GLASSMORPHISM)
+   ========================================== */
+
+.neural-network-wrapper {
+  background: rgba(3, 3, 3, 0.9);
+  border: 1px solid rgba(0, 245, 255, 0.06);
+  border-radius: 8px;
+  padding: 30px;
+  margin-bottom: 50px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+.neural-network-wrapper .hud-label {
+  position: absolute;
+  top: 15px; left: 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--faded-cyan);
+  letter-spacing: 2px;
+}
+
+#neural-net {
+  width: 100%;
+  height: auto;
+  max-height: 350px;
+  display: block;
+}
+
+/* Node Styling */
+.node {
+  fill: #030303;
+  stroke: var(--cyan);
+  stroke-width: 1.5;
+  transition: all 0.3s;
+}
+
+.gold-node {
+  stroke: var(--gold);
+  stroke-width: 2;
+  box-shadow: 0 0 10px var(--gold);
+}
+
+/* Edge styling */
+.edge {
+  fill: none;
+  stroke: rgba(0, 245, 255, 0.06);
+  stroke-width: 1;
+}
+
+/* Active Node Pulses */
+@keyframes nodeGrow {
+  0%, 100% { r: 8; fill: #030303; stroke-width: 1.5; }
+  50% { r: 10; fill: var(--cyan); stroke-width: 3; filter: drop-shadow(0 0 4px var(--cyan)); }
+}
+
+@keyframes nodeGrowGold {
+  0%, 100% { r: 12; fill: #030303; stroke-width: 2; }
+  50% { r: 14; fill: var(--gold); stroke-width: 4; filter: drop-shadow(0 0 8px var(--gold)); }
+}
+
+.pulse-node-1 { animation: nodeGrow 3s infinite ease-in-out; }
+.pulse-node-2 { animation: nodeGrow 3.6s infinite ease-in-out 0.8s; }
+.pulse-node-3 { animation: nodeGrow 4.2s infinite ease-in-out 1.5s; }
+.pulse-node-gold { animation: nodeGrowGold 5s infinite ease-in-out; }
+
+/* Text Labels */
+.node-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  fill: var(--gray-text);
+  letter-spacing: 1px;
+}
+
+.gold-label {
+  fill: var(--gold);
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+/* Pulse Signals along Edges */
+.pulsing-edge-1, .pulsing-edge-2, .pulsing-edge-3, .pulsing-edge-4 {
+  stroke: url(#edgeGrad);
+  stroke-width: 1.5;
+  stroke-dasharray: 40 160;
+  animation: pulseSignal 6s linear infinite;
+}
+
+.pulsing-edge-1 { animation-duration: 4s; }
+.pulsing-edge-2 { animation-duration: 5s; animation-delay: 1s; }
+.pulsing-edge-3 { animation-duration: 3s; animation-delay: 2s; }
+.pulsing-edge-4 { animation-duration: 4.5s; animation-delay: 1.5s; }
+
+@keyframes pulseSignal {
+  0% { stroke-dashoffset: 200; }
+  100% { stroke-dashoffset: -200; }
+}
+
+/* Frosted Glassmorphism AI Cards */
+.ai-cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.glass-card {
+  position: relative;
+  background: rgba(3, 3, 3, 0.4);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s var(--ease-cinematic);
+  transform-style: preserve-3d;
+  transform: perspective(800px) rotateX(0deg) rotateY(0deg);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Left accent block */
+.glass-card-accent {
+  position: absolute;
+  top: 0; left: 0; width: 4px; height: 100%;
+  background: linear-gradient(180deg, var(--gold), transparent);
+  opacity: 0.6;
+  transition: all 0.4s var(--ease-cinematic);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.01);
+  border-color: rgba(255, 215, 0, 0.25);
+  box-shadow: 0 25px 50px rgba(255, 215, 0, 0.03);
+}
+
+.glass-card:hover .glass-card-accent {
+  opacity: 1;
+  background: linear-gradient(180deg, var(--gold), var(--cyan));
+}
+
+.glass-card-header {
+  margin-bottom: 20px;
+  transform: translateZ(20px);
+}
+
+.ai-badge {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.glass-card-header h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--white);
+}
+
+.glass-card-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--gray-text);
+  margin-bottom: 24px;
+  transform: translateZ(30px);
+}
+
+.glass-card-footer {
+  display: flex;
+  gap: 15px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  transform: translateZ(15px);
+}
+
+.param-label {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.param-val {
+  color: var(--white);
+  font-weight: bold;
+}
+
+/* Responsiveness */
+@media (max-width: 992px) {
+  .mission-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ai-cards-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .mission-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .mission-card {
+    min-height: auto;
+  }
+
+  .neural-network-wrapper {
+    padding: 20px 10px;
+  }
+}

@@ -1,0 +1,732 @@
+/* ==========================================================================
+   FLIPACLIP.CSS - MASTER FLIPACLIP NEOBRUTALISM STYLE SHEET
+   ========================================================================== */
+
+:root {
+  /* FlipaClip Core Monochrome Tokens */
+  --white: #ffffff;
+  --black: #000000;
+  --bg-slate: #f5f5f7;
+  --gray-light: #e8e8ed;
+  --gray-med: #86868b;
+  
+  /* Saturated Creative Accents */
+  --brand-red: #ff3d00;      /* Iconic FlipaClip Red-Orange */
+  --brand-yellow: #ffea00;   /* Bright Highlighter Yellow */
+  --brand-cyan: #00f5ff;
+  
+  /* Neobrutalism Physics */
+  --border-thick: 3px solid #000000;
+  --shadow-flat: 6px 6px 0px #000000;
+  --shadow-hover: 9px 9px 0px #000000;
+  --shadow-active: 2px 2px 0px #000000;
+  
+  --ease-playful: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Snappy bounce ease */
+}
+
+/* Base Styles override */
+html, body {
+  background-color: var(--white);
+  color: var(--black);
+  font-family: 'Fredoka', sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body::selection {
+  background: var(--brand-yellow);
+  color: var(--black);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--white);
+  border-left: var(--border-thick);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--black);
+  border: 2px solid var(--white);
+  border-radius: 5px;
+}
+
+/* Custom Playful Pointer over clickable items */
+.cursor-hover #custom-cursor {
+  width: 12px;
+  height: 12px;
+  background: var(--brand-red) !important;
+  box-shadow: 0 0 10px rgba(255, 61, 0, 0.4) !important;
+}
+
+/* Global Playful Layout Classes */
+.neo-card {
+  background: var(--white);
+  border: var(--border-thick);
+  border-radius: 16px;
+  box-shadow: var(--shadow-flat);
+  transition: all 0.25s var(--ease-playful);
+}
+
+.neo-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.neo-card:active {
+  transform: translate(4px, 4px);
+  box-shadow: var(--shadow-active);
+}
+
+/* Bold Neobrutalist Buttons */
+.neo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: var(--border-thick);
+  border-radius: 30px;
+  padding: 12px 28px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: var(--black);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-flat);
+  transition: all 0.2s var(--ease-playful);
+  position: relative;
+  overflow: hidden;
+}
+
+.neo-btn:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-hover);
+  background: var(--brand-yellow);
+}
+
+.neo-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: var(--shadow-active);
+}
+
+.neo-btn-primary {
+  background: var(--brand-red);
+  color: var(--white);
+}
+
+.neo-btn-primary:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* Playful Header Navigation */
+.flip-header {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  height: 80px;
+  background: var(--white);
+  border-bottom: var(--border-thick);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 45px;
+}
+
+.flip-logo {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: var(--black);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.3s var(--ease-playful);
+}
+
+.flip-logo:hover {
+  transform: rotate(-3deg) scale(1.05);
+}
+
+.flip-logo span {
+  color: var(--brand-red);
+}
+
+.flip-nav-links {
+  display: flex;
+  list-style: none;
+  gap: 35px;
+  align-items: center;
+}
+
+.flip-nav-link {
+  text-decoration: none;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--black);
+  transition: color 0.2s;
+  position: relative;
+}
+
+.flip-nav-link:hover {
+  color: var(--brand-red);
+}
+
+.flip-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; width: 0; height: 3px;
+  background: var(--brand-red);
+  border-radius: 2px;
+  transition: width 0.2s;
+}
+
+.flip-nav-link:hover::after {
+  width: 100%;
+}
+
+.flip-nav-link.active::after {
+  width: 100%;
+  background: var(--black);
+}
+
+/* ==========================================================================
+   THE DRAWING-BOARD ANIMATOR WIDGET STYLING
+   ========================================================================== */
+.animator-workspace-card {
+  width: 100%;
+  max-width: 780px;
+  margin: 40px auto 0 auto;
+  background: var(--white);
+  border: var(--border-thick);
+  border-radius: 20px;
+  box-shadow: 8px 8px 0px #000000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Playful Editor Top Toolbar */
+.animator-toolbar {
+  height: 55px;
+  background: var(--bg-slate);
+  border-bottom: var(--border-thick);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.animator-tool-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.animator-controls-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Canvas Box (holds sketch overlay layers) */
+.animator-canvas-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--white);
+  cursor: crosshair;
+  overflow: hidden;
+}
+
+/* Sketch layers stacked via absolute positioning */
+.animator-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.onion-skin-canvas {
+  opacity: 0.2; /* Ghost layer overlay */
+  pointer-events: none;
+  z-index: 1;
+}
+
+.drawing-canvas {
+  z-index: 2;
+}
+
+/* Editor Frame Scrubber / Bottom Film strip bar */
+.animator-scrubber-bar {
+  height: 75px;
+  background: var(--bg-slate);
+  border-top: var(--border-thick);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+}
+
+.animator-btn {
+  background: var(--white);
+  border: 2px solid #000000;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px #000000;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.animator-btn:hover {
+  background: var(--brand-yellow);
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.animator-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #000000;
+}
+
+.animator-btn-danger {
+  color: var(--brand-red);
+}
+.animator-btn-danger:hover {
+  background: #ffebe6;
+  color: var(--brand-red);
+}
+
+.frame-counter-badge {
+  background: var(--black);
+  color: var(--white);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   PAGE SECTIONS & NEOBRUTALISM LAYOUT REBUILD
+   ========================================================================== */
+#app {
+  padding-top: 80px;
+}
+
+/* Playful Hero Section */
+.hero-section {
+  min-height: calc(100vh - 80px);
+  padding: 60px 0;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+}
+
+.hero-playful-tag {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8rem;
+  color: var(--brand-red);
+  margin-bottom: 12px;
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+
+.hero-main-title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 900;
+  font-size: 4rem;
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+
+.hero-main-title span {
+  background: linear-gradient(180deg, transparent 65%, var(--brand-yellow) 65%);
+}
+
+.hero-playful-subtitle {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--gray-med);
+  max-width: 650px;
+  margin: 0 auto 35px auto;
+}
+
+/* Dynamic Stats Grid HUD */
+.hero-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 750px;
+  margin: 45px auto 0 auto;
+}
+
+.hero-stat-card {
+  padding: 15px;
+  text-align: center;
+  background: var(--bg-slate);
+  border: var(--border-thick);
+  border-radius: 12px;
+}
+
+.hero-stat-num {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--brand-red);
+  margin-bottom: 4px;
+}
+
+.hero-stat-lbl {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--black);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Saturated Feature grid section */
+.chapter-section {
+  padding: 120px 0;
+  border-bottom: var(--border-thick);
+}
+
+.section-tagline {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.6rem;
+  color: var(--brand-red);
+  margin-bottom: 10px;
+}
+
+.section-playful-title {
+  font-size: 2.6rem;
+  font-weight: 900;
+  margin-bottom: 45px;
+}
+
+/* Feature grid cards layout */
+.feature-play-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px;
+  margin-top: 25px;
+}
+
+.feature-play-card {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+}
+
+.feature-card-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--brand-red);
+  margin-bottom: 12px;
+}
+
+.feature-card-heading {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.feature-card-desc {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--gray-med);
+  margin-bottom: 24px;
+}
+
+/* Badges list inside cards */
+.feature-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.feature-badge {
+  background: var(--bg-slate);
+  border: 2px solid #000000;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.feature-play-card:hover .feature-badge {
+  background: var(--white);
+  border-color: var(--brand-red);
+  color: var(--brand-red);
+}
+
+/* ==========================================================================
+   THE FILM STRIP TIMELINE STORYBOARD REDESIGN
+   ========================================================================== */
+.film-strip-timeline {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  padding: 25px 15px 45px 15px;
+  margin-top: 40px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+/* Film Strip sprocket hole track */
+.film-strip-wrapper {
+  position: relative;
+  background: var(--black);
+  border: var(--border-thick);
+  border-radius: 12px;
+  padding: 20px 0;
+  box-shadow: var(--shadow-flat);
+}
+
+.film-strip-sprockets {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  height: 12px;
+}
+
+.sprockets-top { top: 6px; }
+.sprockets-bottom { bottom: 6px; }
+
+.sprocket-hole {
+  width: 14px;
+  height: 10px;
+  background: var(--white);
+  border-radius: 2px;
+  border: 1px solid #000000;
+}
+
+/* Timelines card styled as a film keyframe cell */
+.film-keyframe-cell {
+  scroll-snap-align: start;
+  flex: 0 0 340px;
+  background: var(--white);
+  border: 2px solid #000000;
+  border-radius: 8px;
+  margin: 15px 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+  position: relative;
+}
+
+.film-frame-number {
+  position: absolute;
+  top: 15px; right: 15px;
+  background: var(--brand-yellow);
+  border: 2px solid #000000;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: bold;
+}
+
+.keyframe-header {
+  border-bottom: 2px dashed var(--gray-light);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.keyframe-role {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--black);
+}
+
+.keyframe-company {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--brand-red);
+}
+
+.keyframe-date {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gray-med);
+}
+
+.keyframe-bullets {
+  list-style: none;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--gray-med);
+  margin-bottom: 15px;
+}
+
+.keyframe-bullets li {
+  position: relative;
+  padding-left: 15px;
+  margin-bottom: 6px;
+}
+
+.keyframe-bullets li::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  color: var(--brand-yellow);
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
+   TELEMETRY SUBTITLE CONSOLE HUD & ALERTS
+   ========================================================================== */
+.subtitle-console-hud {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 994;
+  width: 90%;
+  max-width: 780px;
+  background: var(--brand-yellow);
+  border: var(--border-thick);
+  border-radius: 12px;
+  padding: 12px 25px;
+  box-shadow: 5px 5px 0px #000000;
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+}
+
+.subtitle-console-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 1.6;
+  color: var(--black);
+}
+
+/* AVATAR SKETCH SCAN */
+.sketch-avatar-wrapper {
+  width: 210px;
+  height: 210px;
+  background: var(--white);
+  border: var(--border-thick);
+  border-radius: 50%;
+  box-shadow: var(--shadow-flat);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sketch-avatar-grid {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 15px 15px;
+}
+
+.sketch-laser-scan {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: var(--brand-red);
+  box-shadow: 0 0 10px var(--brand-red);
+  animation: laserSweep 3.5s ease-in-out infinite;
+}
+
+@keyframes laserSweep {
+  0%, 100% { top: 0%; opacity: 0; }
+  10%, 90% { opacity: 1; }
+  50% { top: 100%; opacity: 1; }
+}
+
+/* Playful certification tables */
+.playful-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+.playful-table th {
+  border-bottom: var(--border-thick);
+  padding: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.playful-table td {
+  padding: 12px 10px;
+  border-bottom: 2px solid var(--gray-light);
+}
+
+.playful-table tr:hover td {
+  background: var(--bg-slate);
+}
+
+/* Playful telemetries inputs */
+.playful-input {
+  width: 100%;
+  background: var(--white);
+  border: var(--border-thick);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.85rem;
+  color: var(--black);
+  outline: none;
+}
+
+.playful-input:focus {
+  background: var(--bg-slate);
+  border-color: var(--brand-red);
+}
+
+/* Cinematic Footer Playful separator */
+.playful-separator {
+  border-top: var(--border-thick);
+  margin-top: 40px;
+  padding-top: 20px;
+}
+
+/* Responsive layout settings */
+@media (max-width: 992px) {
+  .hero-main-title {
+    font-size: 2.8rem;
+  }
+  .feature-play-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .hero-stats-row {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+  }
+}

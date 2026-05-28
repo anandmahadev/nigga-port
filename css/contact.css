@@ -1,0 +1,316 @@
+/* ==========================================
+   CHAPTER 5: OPEN TRANSMISSION STYLING
+   ========================================== */
+
+.transmission-form {
+  margin: 40px auto 60px auto;
+  background: rgba(3, 3, 3, 0.6);
+  border: 1px solid rgba(0, 245, 255, 0.05);
+  border-radius: 8px;
+  padding: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.input-group.full-width {
+  grid-column: span 2;
+}
+
+/* Stylized Input HUD Fields */
+.field-label {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--gray-text);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.field-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.field-wrapper.align-start {
+  align-items: flex-start;
+}
+
+.field-prompt {
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  color: var(--cyan);
+  margin-right: 12px;
+  margin-left: 10px;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+.field-wrapper.align-start .field-prompt {
+  margin-top: 14px;
+}
+
+.terminal-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 12px 10px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--white);
+  outline: none;
+  transition: all 0.4s var(--ease-cinematic);
+}
+
+.terminal-textarea {
+  resize: none;
+}
+
+/* Focused Glare */
+.terminal-input:focus {
+  border-bottom-color: var(--cyan);
+  box-shadow: 0 4px 12px rgba(0, 245, 255, 0.05);
+}
+
+/* Prompt shift on focus */
+.terminal-input:focus + .field-prompt,
+.field-wrapper:focus-within .field-prompt {
+  transform: translateX(4px);
+  color: var(--gold);
+  text-shadow: 0 0 8px var(--gold);
+}
+
+/* Indicator strip underneath inputs */
+.field-indicator {
+  width: 0%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  margin-top: -1px;
+  transition: width 0.4s var(--ease-cinematic);
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+.field-wrapper:focus-within ~ .field-indicator {
+  width: 100%;
+}
+
+.input-group:focus-within .field-label {
+  color: var(--cyan);
+}
+
+/* Submit Button & Launch sequence animation */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.btn-transmit {
+  position: relative;
+  background: var(--cyan);
+  border: none;
+  color: var(--black);
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  padding: 18px 45px;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-cinematic);
+  box-shadow: 0 0 20px var(--cyan-dim);
+}
+
+.btn-transmit-border {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.btn-transmit-bg {
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: all 0.6s var(--ease-heavy);
+  z-index: 1;
+}
+
+.btn-transmit-text {
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s;
+}
+
+.btn-transmit-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: all 0.5s var(--ease-cinematic);
+}
+
+/* Button Hover State */
+.btn-transmit:hover {
+  background: var(--cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px var(--cyan), 0 0 50px rgba(0, 245, 255, 0.2);
+}
+
+.btn-transmit:hover .btn-transmit-bg {
+  left: 100%;
+}
+
+.btn-transmit:active {
+  transform: translateY(1px);
+}
+
+/* Active Launch Sequence Classes applied by JS */
+.btn-transmit.launching {
+  background: var(--gold) !important;
+  color: var(--black) !important;
+  box-shadow: 0 0 35px var(--gold), 0 0 60px var(--gold-glow) !important;
+  cursor: wait;
+}
+
+.btn-transmit.launching .btn-transmit-glow {
+  opacity: 0.8;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.btn-transmit.success {
+  background: #27c93f !important;
+  color: var(--white) !important;
+  box-shadow: 0 0 30px rgba(39, 201, 63, 0.6) !important;
+  cursor: default;
+}
+
+/* Social Transmissions Row */
+.social-transmissions-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.social-node {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(5, 5, 5, 0.4);
+  padding: 12px 24px;
+  border-radius: 30px;
+  color: var(--gray-text);
+  transition: all 0.4s var(--ease-cinematic);
+}
+
+.social-svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--gray-text);
+  transition: all 0.4s var(--ease-cinematic);
+}
+
+.social-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* Hover effects */
+.social-node:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(0, 245, 255, 0.03);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 245, 255, 0.05);
+}
+
+.social-node:hover .social-svg {
+  fill: var(--cyan);
+  filter: drop-shadow(0 0 4px var(--cyan));
+}
+
+/* Social node alternating color highlights */
+.social-node:nth-child(2):hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(255, 215, 0, 0.03);
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.05);
+}
+
+.social-node:nth-child(2):hover .social-svg {
+  fill: var(--gold);
+  filter: drop-shadow(0 0 4px var(--gold));
+}
+
+/* ==========================================
+   CINEMATIC FOOTER
+   ========================================== */
+
+.cinematic-footer {
+  margin-top: 100px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.footer-separator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05) 50%, transparent);
+  margin-bottom: 30px;
+}
+
+.footer-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 2px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .transmission-form {
+    padding: 24px;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .input-group.full-width {
+    grid-column: span 1;
+  }
+  
+  .social-transmissions-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .social-node {
+    width: 100%;
+    max-width: 250px;
+    justify-content: center;
+  }
+}
