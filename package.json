@@ -1,0 +1,11 @@
+{
+  "name": "cinematic-portfolio",
+  "version": "1.0.0",
+  "description": "Cinematic, story-driven developer portfolio website",
+  "scripts": {
+    "dev": "vite --host"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}
