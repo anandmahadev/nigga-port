@@ -1,0 +1,16 @@
+﻿{
+  "short_name": "FlipaClip.SYS",
+  "name": "FlipaClip.SYS // Anand Mahadev Cinematic Portfolio",
+  "icons": [
+    {
+      "src": "images/character.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "background_color": "#ffffff",
+  "theme_color": "#ff3d00",
+  "display": "standalone",
+  "orientation": "portrait"
+}

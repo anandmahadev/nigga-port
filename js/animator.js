@@ -1,3 +1,7 @@
+﻿/**
+ * animator.js - Canvas Sketchbook Controller.
+ * Handles frame overlays, multi-layered canvas drawing, and onion-skin layers.
+ */
 /**
  * animator.js - FlipaClip Embedded 2D Sketch Editor Engine
  * Runs multi-frame sketch pads, onion skin ghosting, and 12fps looping playbacks.
@@ -398,7 +402,7 @@ const animatorEngine = {
     
     this.isPlaying = true;
     const playBtn = document.getElementById('anim-play-btn');
-    if (playBtn) playBtn.textContent = "STOP [■]";
+    if (playBtn) playBtn.textContent = "STOP [â– ]";
 
     // Hide onion skin overlay during playback for clean viewing
     this.onionSkinCtx.clearRect(0, 0, this.onionSkinCanvas.width, this.onionSkinCanvas.height);
@@ -441,7 +445,7 @@ const animatorEngine = {
     this.isPlaying = false;
 
     const playBtn = document.getElementById('anim-play-btn');
-    if (playBtn) playBtn.textContent = "PLAY [▶]";
+    if (playBtn) playBtn.textContent = "PLAY [â–¶]";
 
     // Reload active frame drawing and onion overlay
     this.loadFrame(this.currentFrameIndex);
@@ -460,3 +464,4 @@ const animatorEngine = {
 
 // Bind to window to allow DOM onload triggers
 window.animatorEngine = animatorEngine;
+
