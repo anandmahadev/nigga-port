@@ -1,4 +1,4 @@
-/* Core Design Tokens & Global Variables */
+﻿/* Core Design Tokens & Global Variables */
 :root {
   --black: #000000;
   --black-solid: #030303;
@@ -373,5 +373,21 @@ body {
     text-align: center;
     display: flex;
     justify-content: center;
+  }
+}
+
+
+/* Added in Commit 9 - Print Layout Optimizations */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .grain-overlay, #custom-cursor, #cursor-trail, #star-canvas, .audio-uplink-overlay, header {
+    display: none !important;
+  }
+  .neo-card {
+    box-shadow: none !important;
+    border: 1px solid #000000 !important;
   }
 }
