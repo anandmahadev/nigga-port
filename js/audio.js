@@ -1,3 +1,7 @@
+﻿/**
+ * audio.js - WebAudio Synthesizer Engine.
+ * Creates customized chalk drawings, clicks, and warp speeds.
+ */
 /**
  * audio.js - Synthetic Web Audio FX Engine
  * Generates futuristic retro soundscapes and clicks with ZERO network footprint.
@@ -255,3 +259,4 @@ const audioEngine = {
 
 // Bind to window to allow access
 window.audioEngine = audioEngine;
+
