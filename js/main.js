@@ -1,3 +1,12 @@
+﻿/* Progressive Web App Initialization */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('ServiceWorker registered with scope:', reg.scope))
+      .catch(err => console.error('ServiceWorker registration failed:', err));
+  });
+}
+
 /**
  * main.js - Master Orchestration Story Cinema Engine
  * Manages HUD timecode ticks, autoplay scroll snaps, audio triggers, and neural vector tracking.
@@ -146,7 +155,7 @@ function initAutoplayReelEngine() {
     if (isPlaying) {
       // STOP PLAYING
       clearInterval(reelInterval);
-      btn.textContent = "PLAY REEL [►]";
+      btn.textContent = "PLAY REEL [â–º]";
       btn.classList.remove('playing');
       isPlaying = false;
       
@@ -155,7 +164,7 @@ function initAutoplayReelEngine() {
       }
     } else {
       // START PLAYING
-      btn.textContent = "STOP REEL [■]";
+      btn.textContent = "STOP REEL [â– ]";
       btn.classList.add('playing');
       isPlaying = true;
       
@@ -175,7 +184,7 @@ function initAutoplayReelEngine() {
         if (index >= chapters.length) {
           // Finished loop
           clearInterval(reelInterval);
-          btn.textContent = "PLAY REEL [►]";
+          btn.textContent = "PLAY REEL [â–º]";
           btn.classList.remove('playing');
           isPlaying = false;
           window.typeSubtitles(">> SYSTEM_LOG: Story reel play completed. Operational telemetries online.");
@@ -192,7 +201,7 @@ function initAutoplayReelEngine() {
   window.addEventListener('wheel', () => {
     if (isPlaying) {
       clearInterval(reelInterval);
-      btn.textContent = "PLAY REEL [►]";
+      btn.textContent = "PLAY REEL [â–º]";
       btn.classList.remove('playing');
       isPlaying = false;
     }
@@ -353,3 +362,4 @@ function initContactFormTelemetry() {
     btnText.textContent = originalText;
   });
 }
+
