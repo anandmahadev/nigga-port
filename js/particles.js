@@ -1,4 +1,4 @@
-/**
+﻿/**
  * particles.js - Space Starfield Generator with Hyperspace Warp
  * Animates a 2D drifting star canvas with vertical speed trail warps on scroll.
  */
@@ -12,7 +12,7 @@ function initParticles() {
 
   const ctx = canvas.getContext('2d');
   let animationFrameId;
-  const numStars = 220;
+  const numStars = (window.PORTFOLIO_CONFIG && window.PORTFOLIO_CONFIG.particles) ? window.PORTFOLIO_CONFIG.particles.numStars : 220;
   const stars = [];
 
   // Handle Resize
@@ -86,7 +86,7 @@ function initParticles() {
 
   // Expose triggers globally
   window.triggerWarp = function(durationMs = 800) {
-    targetWarpFactor = 32.0; // Warp Speed engaged!
+    targetWarpFactor = (window.PORTFOLIO_CONFIG && window.PORTFOLIO_CONFIG.particles) ? window.PORTFOLIO_CONFIG.particles.warpFactorMax : 32.0; // Warp Speed engaged!
     
     // Play transition sweep sound when starting warp!
     if (window.audioEngine && typeof window.audioEngine.playSweep === 'function') {
@@ -109,3 +109,4 @@ function initParticles() {
 window.initParticles = initParticles;
 window.starfieldWarpFactor = starfieldWarpFactor;
 window.targetWarpFactor = targetWarpFactor;
+
