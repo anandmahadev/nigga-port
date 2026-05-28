@@ -1,4 +1,4 @@
-﻿/**
+/**
  * audio.js - WebAudio Synthesizer Engine.
  * Creates customized chalk drawings, clicks, and warp speeds.
  */
@@ -221,6 +221,34 @@ const audioEngine = {
       osc2.start(0);
       osc.stop(this.ctx.currentTime + 1.5);
       osc2.stop(this.ctx.currentTime + 1.5);
+    });
+  },
+
+  /**
+   * Generates a dynamic sci-fi success melody (three-tone rising arpeggio).
+   */
+  playSuccessChime() {
+    if (this.isMuted || !this.ctx) return;
+    this.ctx.resume().then(() => {
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 arpeggio
+      notes.forEach((freq, idx) => {
+        const timeOffset = idx * 0.15;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime + timeOffset);
+
+        gain.gain.setValueAtTime(0.0, this.ctx.currentTime + timeOffset);
+        gain.gain.linearRampToValueAtTime(0.06, this.ctx.currentTime + timeOffset + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + timeOffset + 0.35);
+
+        osc.connect(gain);
+        gain.connect(this.masterGain);
+
+        osc.start(this.ctx.currentTime + timeOffset);
+        osc.stop(this.ctx.currentTime + timeOffset + 0.4);
+      });
     });
   },
 
