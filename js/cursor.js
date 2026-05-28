@@ -1,8 +1,12 @@
-/**
+﻿/**
  * cursor.js - Dual-Component Lerping Custom Cursor
  * Orchestrates a glowing cyan core dot and a smoothed lagging gold/cyan trail ring.
  */
 
+/**
+ * Initializes custom dual cursor. Core dot follows instantly,
+ * while the bounding ring follows with Linear Interpolation (lerp).
+ */
 function initCursor() {
   const cursor = document.getElementById('custom-cursor');
   const trail = document.getElementById('cursor-trail');
@@ -99,3 +103,4 @@ function initCursor() {
 
 // Expose globally for script-tag structures
 window.initCursor = initCursor;
+
